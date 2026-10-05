@@ -1,0 +1,87 @@
+# Project One Get-Item Pseudocode
+#
+# Graded checkpoint: Module Five Project One
+# Later use: get-item and inventory design for M7 Project Two
+#
+# Review the course-provided get-item flowchart before completing this file.
+# Write pseudocode, not Python code. Use clear indentation and course-appropriate
+# keywords such as INPUT, OUTPUT, IF, ELSE, SET, ADD, or similar terms.
+
+START get_item
+
+    # TODO 1: Identify the information the get-item process needs.
+    # Consider the current room, item in that room, and player's inventory.
+
+    # Information needed:
+    #   current_room  - the name of the room the player is in
+    #   room_item     - the item located in current_room, or "none" if the
+    #                   room has no item or the item was already collected
+    #   inventory     - the list of items the player has collected so far
+    #                   (starts empty)
+    #   command       - the get-item command the player types
+    #                   (format: "get <item name>")
+    #   requested_item - the item name taken from the command
+    #
+    # Room items (matches the Map of Viltrum):
+    #   Main Hub            - none (start room)
+    #   Science Laboratory  - Data Stick
+    #   Observation Tower   - Navigation Map
+    #   Crew Quarters       - Keycard
+    #   Medical Bay         - Bandage
+    #   Maintenance Room    - Battery Cell
+    #   Weapon Room         - GreatSword
+    #   Throne Room         - none (villain room)
+
+    # TODO 2: Prompt for and receive the player's get-item command.
+
+    OUTPUT "Enter a command (example: get Keycard):"
+    INPUT command
+    SET requested_item TO the item name that follows "get" in command
+
+    # TODO 3: Validate whether the requested item is available in the current
+    # room. Show the decision clearly.
+
+    IF requested_item is equal to room_item of current_room
+        # valid request, see TODO 4
+    ELSE
+        # invalid request, see TODO 5
+
+    # TODO 4: Describe what happens when the item request is valid.
+    # Include the inventory update and player output.
+
+    IF requested_item is equal to room_item of current_room
+        ADD requested_item TO inventory
+        SET room_item of current_room TO "none"
+        OUTPUT "You picked up the " + requested_item + "."
+        OUTPUT "Inventory: " + inventory
+
+    # TODO 5: Describe what happens when the item request is invalid.
+    # Include the output the player should receive.
+
+    ELSE
+        # inventory does NOT change
+        OUTPUT "There is no " + requested_item + " in this room."
+        OUTPUT "Inventory: " + inventory
+
+    # TODO 6: Show how the process returns to or continues the larger gameplay
+    # loop after the command is handled.
+
+    # After the item request is handled (valid or invalid), control returns
+    # to the main gameplay loop. The game then displays the current room
+    # and asks for the next command (move, get item, or Exit). The loop
+    # keeps running until the player exits or reaches a required ending.
+    RETURN to the main gameplay loop
+
+END get_item
+
+
+# References
+
+# Project One Get-Item Flowchart. (n.d.). Course-provided materials, Module Five.
+#     [Used as the model for the get-item process and decision structure.]
+#
+# Project One Storyboard: Text-Based Adventure Game. (2026). storyboard.md.
+#     [Source for room names, item names, and villain details.]
+#
+# Map of Viltrum. (2026). game_map.drawio.
+#     [Source for the item located in each room.]
